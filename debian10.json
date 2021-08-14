@@ -34,7 +34,7 @@
       "cloud_init": true,
       "cloud_init_storage_pool": "{{user `storage_pool`}}",
 
-      "iso_file": "local:iso/debian-10.9.0-amd64-netinst.iso",
+      "iso_file": "local:iso/debian-10.10.0-amd64-netinst.iso",
       "http_directory": "http",
       "boot_wait": "10s",
       "boot_command": [

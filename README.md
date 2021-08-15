@@ -1,6 +1,6 @@
 Install packer and run this:
 ```
-$ packer build -var-file ~/.packer-home.hcl debian10.json
+$ packer build -var-file ~/.packer-home.hcl debian11.json
 ```
 This will create a DEBIAN10 template.
 

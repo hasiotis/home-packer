@@ -1,0 +1,27 @@
+#cloud-config
+autoinstall:
+  version: 1
+  locale: en_US
+  keyboard:
+    layout: en
+    variant: us
+  network:
+    network:
+      version: 2
+      ethernets:
+        ens33:
+          dhcp4: true
+  storage:
+    layout:
+      name: lvm
+  identity:
+    hostname: ubuntu
+    username: sysadmin
+    password: $6$rounds=4096$S42mRfJN$B/gcWtlp9cVCdxZKS8vgIw3yhXtmW2aHA72HB3fFJOUBAUCKF9ogK0.BD0gXVemI/fa0LFdVRw9JEnLJpakU2.
+  ssh:
+    install-server: yes
+  user-data:
+    disable_root: true
+  late-commands:
+    - 'sed -i "s/dhcp4: true/&\n      dhcp-identifier: mac/" /target/etc/netplan/00-installer-config.yaml'
+    - echo 'sysadmin ALL=(ALL) NOPASSWD:ALL' > /target/etc/sudoers.d/sysadmin

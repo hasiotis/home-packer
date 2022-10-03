@@ -12,7 +12,7 @@
       "username": "{{user `username`}}",
       "password": "{{user `password`}}",
 
-      "node": "pve",
+      "node": "{{ user `node`}}",
       "vm_name": "ubuntu2004-template-packer",
       "os": "l26",
       "memory": 1024,
@@ -32,7 +32,7 @@
       "cloud_init": true,
       "cloud_init_storage_pool": "{{user `storage_pool`}}",
 
-      "iso_file": "local:iso/ubuntu-20.04.3-live-server-amd64.iso",
+      "iso_file": "local:iso/ubuntu-20.04.5-live-server-amd64.iso",
       "http_directory": "http",
       "boot_wait": "5s",
       "boot_command": [

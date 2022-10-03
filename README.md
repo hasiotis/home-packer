@@ -2,7 +2,7 @@ Install packer and run this:
 ```
 $ packer build -var-file ~/.packer-home.hcl debian11.json
 ```
-This will create a DEBIAN10 template.
+This will create a DEBIAN11 template.
 
 Where ~/.packer-home.hcl is:
 ```
@@ -11,5 +11,6 @@ Where ~/.packer-home.hcl is:
     "username": "root@pam",
     "password": "YOUR_PASSWORD",
     "storage_pool": "local-lvm"
+    "node": "pve"
 }
 ```

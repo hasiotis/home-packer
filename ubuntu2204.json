@@ -12,7 +12,7 @@
       "username": "{{user `username`}}",
       "password": "{{user `password`}}",
 
-      "node": "pve",
+      "node": "{{ user `node`}}",
       "vm_name": "ubuntu2204-template-packer",
       "os": "l26",
       "memory": 2048,

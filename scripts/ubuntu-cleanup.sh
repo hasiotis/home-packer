@@ -40,5 +40,8 @@ history -c
 # Delete unneeded files.
 rm -f /home/sysadmin/*.sh
 
+# Cleanup cloud-init
+cloud-init clean --logs
+
 # Add `sync` so Packer doesn't quit too early, before the large file is deleted.
 sync

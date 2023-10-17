@@ -5,7 +5,7 @@ apt-get autoremove -y
 apt-get update
 
 #Stop services for cleanup
-service rsyslog stop
+#service rsyslog stop
 
 #clear audit logs
 if [ -f /var/log/audit/audit.log ]; then

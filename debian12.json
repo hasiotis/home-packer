@@ -13,11 +13,13 @@
       "password": "{{user `password`}}",
 
       "node": "{{ user `node`}}",
-      "vm_name": "ubuntu2204-template-packer",
+      "vm_name": "debian12-template-packer",
       "os": "l26",
-      "memory": 2048,
+      "memory": 1024,
+      "scsi_controller": "virtio-scsi-pci",
       "network_adapters": [
         {
+          "model": "virtio",
           "bridge": "vmbr0"
         }
       ],
@@ -32,16 +34,12 @@
       "cloud_init": true,
       "cloud_init_storage_pool": "{{user `storage_pool`}}",
 
-      "iso_file": "local:iso/ubuntu-22.04.3-live-server-amd64.iso",
+      "iso_file": "local:iso/debian-12.2.0-amd64-netinst.iso",
       "http_directory": "http",
-      "boot_wait": "5s",
+      "boot_wait": "10s",
       "boot_command": [
-        "c",
-        "linux /casper/vmlinuz --- autoinstall ds='nocloud-net;s=http://{{ .HTTPIP }}:{{ .HTTPPort }}/' ",
-        "<enter><wait><wait>",
-        "initrd /casper/initrd",
-        "<enter><wait><wait>",
-        "boot<enter>"
+        "<esc><wait>",
+        "auto url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed-debian12.cfg<enter>"
       ],
 
       "communicator": "ssh",
@@ -50,19 +48,19 @@
       "ssh_password": "passw0rd",
 
       "unmount_iso": true,
-      "template_name": "TEMPLATE-UBUNTU2204",
-      "template_description": "TEMPLATE :: Ubuntu 22.04"
+      "template_name": "TEMPLATE-DEBIAN12",
+      "template_description": "TEMPLATE :: Debian 12"
     }
   ],
   "provisioners": [
     {
       "type": "shell",
-      "script": "scripts/ubuntu-setup.sh",
+      "script": "scripts/debian12-setup.sh",
       "execute_command": "echo 'passw0rd' | {{.Vars}} sudo -S -E bash '{{.Path}}'"
     },
     {
       "type": "shell",
-      "script": "scripts/ubuntu-cleanup.sh",
+      "script": "scripts/debian-cleanup.sh",
       "execute_command": "echo 'passw0rd' | {{.Vars}} sudo -S -E bash '{{.Path}}'"
     }
   ]

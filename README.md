@@ -1,16 +1,20 @@
 Install packer and run this:
 ```
-$ packer build -var-file ~/.packer-home.hcl debian11.json
+$ packer init debian12.pkr.hcl
+$ packer build --var-file=nuc.pkrvars.hcl debian12.pkr.hcl
 ```
-This will create a DEBIAN11 template.
+This will create a DEBIAN12 template.
 
-Where ~/.packer-home.hcl is:
 ```
-{
-    "url": "https://pve.hasiotis.loc:8006/",
-    "username": "root@pam",
-    "password": "YOUR_PASSWORD",
-    "storage_pool": "local-lvm"
-    "node": "pve"
-}
+$ packer init ubuntu2204.pkr.hcl
+$ packer build --var-file=nuc.pkrvars.hcl ubuntu2204.pkr.hcl
+```
+This will create a UBUNTU2204 template.
+
+Where ~/nuc.pkrvars.hcl is:
+```
+proxmox_url      = "https://nuc.hasiotis.loc:8006/"
+proxmox_node     = "nuc"
+proxmox_username = "root@pam"
+proxmox_password = "YOUR_PASSWORD"
 ```
